@@ -1,0 +1,151 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+html, body, #root {
+  height: 100%;
+}
+
+body {
+  background-color: #F6F7F9;
+  color: #0F172A;
+  font-family: Inter, ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+  font-feature-settings: "cv11", "ss01";
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* Hide scrollbars on horizontal chip rows but keep them scrollable */
+.chip-scroll::-webkit-scrollbar {
+  height: 0px;
+}
+
+/* Slim, quiet scrollbars for tables / panels on desktop */
+.scroll-thin {
+  scrollbar-width: thin;
+  scrollbar-color: #CBD5E1 transparent;
+}
+.scroll-thin::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+.scroll-thin::-webkit-scrollbar-thumb {
+  background-color: #CBD5E1;
+  border-radius: 9999px;
+  border: 2px solid transparent;
+  background-clip: content-box;
+}
+
+@layer base {
+  th {
+    text-align: left;
+  }
+}
+
+@layer components {
+  /* ---------- Form controls ---------- */
+  .input {
+    @apply w-full rounded-lg border border-slate-300 bg-white px-3 py-2 text-sm text-slate-900 shadow-sm
+      placeholder:text-slate-400 transition
+      focus:border-brand focus:outline-none focus:ring-4 focus:ring-brand/15
+      disabled:cursor-not-allowed disabled:bg-slate-50 disabled:text-slate-500;
+  }
+  .label {
+    @apply mb-1.5 block text-[13px] font-semibold text-slate-600;
+  }
+  .hint {
+    @apply mt-1.5 text-xs text-slate-400;
+  }
+
+  /* ---------- Buttons ---------- */
+  .btn {
+    @apply inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-lg px-3.5 py-2 text-sm font-semibold
+      transition focus:outline-none focus-visible:ring-4 focus-visible:ring-brand/20
+      disabled:cursor-not-allowed disabled:opacity-50;
+  }
+  .btn-primary {
+    @apply inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-lg bg-brand px-3.5 py-2 text-sm font-semibold text-white shadow-sm
+      transition hover:bg-brand-dark focus:outline-none focus-visible:ring-4 focus-visible:ring-brand/25
+      disabled:cursor-not-allowed disabled:opacity-50;
+  }
+  .btn-secondary {
+    @apply inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-lg border border-slate-300 bg-white px-3.5 py-2 text-sm font-semibold text-slate-700 shadow-sm
+      transition hover:bg-slate-50 focus:outline-none focus-visible:ring-4 focus-visible:ring-slate-200
+      disabled:cursor-not-allowed disabled:opacity-50;
+  }
+  .btn-dark {
+    @apply inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-lg bg-slate-900 px-3.5 py-2 text-sm font-semibold text-white shadow-sm
+      transition hover:bg-slate-800 focus:outline-none focus-visible:ring-4 focus-visible:ring-slate-300
+      disabled:cursor-not-allowed disabled:opacity-50;
+  }
+  .btn-success {
+    @apply inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-lg bg-emerald-600 px-3.5 py-2 text-sm font-semibold text-white shadow-sm
+      transition hover:bg-emerald-700 focus:outline-none focus-visible:ring-4 focus-visible:ring-emerald-200
+      disabled:cursor-not-allowed disabled:opacity-50;
+  }
+  .btn-danger {
+    @apply inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-lg bg-red-600 px-3.5 py-2 text-sm font-semibold text-white shadow-sm
+      transition hover:bg-red-700 focus:outline-none focus-visible:ring-4 focus-visible:ring-red-200
+      disabled:cursor-not-allowed disabled:opacity-50;
+  }
+  .btn-danger-soft {
+    @apply inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-lg bg-red-50 px-3.5 py-2 text-sm font-semibold text-red-600
+      transition hover:bg-red-100 focus:outline-none focus-visible:ring-4 focus-visible:ring-red-100
+      disabled:cursor-not-allowed disabled:opacity-50;
+  }
+  .btn-sm {
+    @apply px-2.5 py-1.5 text-xs;
+  }
+  .btn-icon {
+    @apply inline-flex h-8 w-8 items-center justify-center rounded-lg text-slate-500 transition
+      hover:bg-slate-100 hover:text-slate-900 focus:outline-none focus-visible:ring-4 focus-visible:ring-slate-200
+      disabled:cursor-not-allowed disabled:opacity-40;
+  }
+
+  /* ---------- Surfaces ---------- */
+  .card {
+    @apply rounded-xl border border-slate-200 bg-white shadow-card;
+  }
+
+  /* ---------- Data tables ---------- */
+  .table-scroll {
+    @apply scroll-thin overflow-auto;
+  }
+  .data-table {
+    @apply w-full border-separate border-spacing-0 text-sm;
+  }
+  .data-table thead th {
+    @apply sticky top-0 z-10 whitespace-nowrap border-b border-slate-200 bg-slate-50/95 px-4 py-2.5 
+      text-[11px] font-semibold uppercase tracking-wider text-slate-500 backdrop-blur;
+  }
+  .data-table tbody td {
+    @apply border-b border-slate-100 px-4 py-3 align-middle text-slate-700;
+  }
+  .data-table tbody tr:last-child td {
+    @apply border-b-0;
+  }
+  .data-table tbody tr.row-hover {
+    @apply cursor-pointer transition-colors;
+  }
+  .data-table tbody tr:hover td {
+    @apply bg-slate-50/80;
+  }
+  .num {
+    @apply text-right tabular-nums;
+  }
+}
+
+@media print {
+  body * {
+    visibility: hidden;
+  }
+  #print-invoice, #print-invoice * {
+    visibility: visible;
+  }
+  #print-invoice {
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 100%;
+  }
+}
